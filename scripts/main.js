@@ -1,12 +1,12 @@
 // Imports each module
-
+import { Facilities } from "./Facilities.js";
 
 
 // Renders entire HTML and adds it to #container
 const mainContainer = document.querySelector("#container");
 
-const renderAllHTML = () => {
-    
+const renderAllHTML = async() => {
+    const facilityOptions = await Facilities();
 
     const composeHTML = `
     <header class="mb-5 ms-5">
@@ -24,7 +24,7 @@ const renderAllHTML = () => {
             <section class="w-100 facilitiesList">
                 <div class="d-flex justify-content-start ms-5 ps-3">
                     <p>Choose a facility</p>
-                    <!-- Facility Input goes here -->
+                    ${facilityOptions}
                 </div>
             </section>
         </div>
