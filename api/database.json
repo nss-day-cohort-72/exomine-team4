@@ -1,4 +1,82 @@
 {
-    "minerals":[],
-    "facilityMinerals": []
+    "governors": [
+        { "id": 1, "name": "Lola Wolff", "status": true, "colonyId": 1 },
+        { "id": 2, "name": "Patricia Purdy", "status": true, "colonyId": 2 },
+        { "id": 3, "name": "Katrina Bahringer", "status": true, "colonyId": 3 },
+        { "id": 4, "name": "Damon Hartmann", "status": false, "colonyId": 4 },
+        { "id": 5, "name": "Ruben Hopkins", "status": true, "colonyId": 5 },
+        { "id": 6, "name": "Sarah Vang", "status": true, "colonyId": 6 },
+        { "id": 7, "name": "Benjamin Barker", "status": false, "colonyId": 7 },
+        { "id": 8, "name": "Anita Sanders", "status": true, "colonyId": 8 },
+        { "id": 9, "name": "Mason Reynolds", "status": true, "colonyId": 9 },
+        { "id": 10, "name": "Carmen Holt", "status": true, "colonyId": 10 }
+    ],
+    "colonies": [
+        { "id": 1, "name": "Earth", "region": "Sol System" },
+        { "id": 2, "name": "Mars", "region": "Sol System" },
+        { "id": 3, "name": "Europa", "region": "Sol System" },
+        { "id": 4, "name": "Titan", "region": "Sol System" },
+        { "id": 5, "name": "Ganymede", "region": "Sol System" },
+        { "id": 6, "name": "Callisto", "region": "Sol System" },
+        { "id": 7, "name": "Io", "region": "Sol System" },
+        { "id": 8, "name": "Enceladus", "region": "Sol System" },
+        { "id": 9, "name": "Triton", "region": "Sol System" },
+        { "id": 10, "name": "Oberon", "region": "Sol System" }
+    ],
+    "miningFacilities": [
+        { "id": 1, "name": "Ganymede Mine", "status": true },
+        { "id": 2, "name": "Titan Extraction", "status": true },
+        { "id": 3, "name": "Europa Quarry", "status": true },
+        { "id": 4, "name": "Io Refinery", "status": true },
+        { "id": 5, "name": "Callisto Dig", "status": false },
+        { "id": 6, "name": "Enceladus Drilling", "status": true },
+        { "id": 7, "name": "Triton Shaft", "status": true },
+        { "id": 8, "name": "Oberon Pit", "status": false },
+        { "id": 9, "name": "Mars Outpost", "status": true },
+        { "id": 10, "name": "Earth Surface Mine", "status": true }
+    ],
+    "minerals": [
+        { "id": 1, "name": "Iron" },
+        { "id": 2, "name": "Chromium" },
+        { "id": 3, "name": "Titanium" },
+        { "id": 4, "name": "Cobalt" },
+        { "id": 5, "name": "Nickel" },
+        { "id": 6, "name": "Aluminum" },
+        { "id": 7, "name": "Copper" },
+        { "id": 8, "name": "Zinc" },
+        { "id": 9, "name": "Platinum" },
+        { "id": 10, "name": "Gold" },
+        { "id": 11, "name": "Silver" },
+        { "id": 12, "name": "Palladium" },
+        { "id": 13, "name": "Lithium" },
+        { "id": 14, "name": "Uranium" },
+        { "id": 15, "name": "Helium-3" }
+    ],
+    "colonyMinerals": [
+        { "colonyId": 1, "mineralId": 1, "quantity": 7 },
+        { "colonyId": 1, "mineralId": 2, "quantity": 2 },
+        { "colonyId": 2, "mineralId": 3, "quantity": 5},
+        { "colonyId": 3, "mineralId": 4, "quantity": 9},
+        { "colonyId": 4, "mineralId": 5, "quantity": 11},
+        { "colonyId": 5, "mineralId": 6, "quantity": 3},
+        { "colonyId": 6, "mineralId": 7, "quantity": 4},
+        { "colonyId": 7, "mineralId": 8, "quantity": 8 },
+        { "colonyId": 8, "mineralId": 9, "quantity": 1},
+        { "colonyId": 9, "mineralId": 10, "quantity": 10},
+        { "colonyId": 10, "mineralId": 11, "quantity": 6 }
+    ],
+    "facilityMinerals": [
+        { "facilityId": 1, "mineralId": 1, "quantity": 18},
+        { "facilityId": 1, "mineralId": 2, "quantity": 4},
+        { "facilityId": 2, "mineralId": 3, "quantity": 20},
+        { "facilityId": 3, "mineralId": 4, "quantity": 12},
+        { "facilityId": 4, "mineralId": 5, "quantity": 15 },
+        { "facilityId": 5, "mineralId": 6, "quantity": 9},
+        { "facilityId": 6, "mineralId": 7, "quantity": 22},
+        { "facilityId": 7, "mineralId": 8, "quantity": 13},
+        { "facilityId": 8, "mineralId": 9, "quantity": 8 },
+        { "facilityId": 9, "mineralId": 10, "quantity": 25 },
+        { "facilityId": 10, "mineralId": 11, "quantity": 30 }
+    ]
 }
+
