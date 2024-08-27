@@ -1,12 +1,14 @@
 // Imports each module
-import { Facilities } from "./Facilities.js";
+import { Facilities } from "./Facilities.js"
+import { GovernorSelector } from "./Governor.js"
 
 
 // Renders entire HTML and adds it to #container
-const mainContainer = document.querySelector("#container");
+const mainContainer = document.querySelector("#container")
 
-const renderAllHTML = async() => {
-    const facilityOptions = await Facilities();
+const renderAllHTML = async () => {
+    const facilityOptions = await Facilities()
+    const governorOptions = await GovernorSelector()
 
     const composeHTML = `
     <header class="mb-5 ms-5">
@@ -18,7 +20,7 @@ const renderAllHTML = async() => {
             <section class="w-100 governorsList">
                 <div class="d-flex justify-content-start ms-5 ps-3">
                     <p class="me-5">Choose a governor</p>
-                    <!-- Governor Input goes here -->
+                    ${governorOptions}
                 </div>
             </section>
             <section class="w-100 facilitiesList">
@@ -47,8 +49,8 @@ const renderAllHTML = async() => {
     </div>
     `;
 
-    mainContainer.innerHTML = composeHTML;
-};
+    mainContainer.innerHTML = composeHTML
+}
 
 document.addEventListener("newPurchaseCreated", renderAllHTML);
 
