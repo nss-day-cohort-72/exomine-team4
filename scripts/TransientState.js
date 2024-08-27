@@ -1,3 +1,6 @@
+import {getGovernors} from "./Governors.js"
+
+
 const state = {
 
 }
@@ -5,6 +8,14 @@ const state = {
 export const setFacility = (facilityId) => {
     state.selectedFacility = facilityId
     document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+export const setGovernor = (governorId) => {
+
+    const governors = getGovernors();
+
+
+    state.selectedGovernor = governorId;
 }
 
 export const purchaseMineral = () => {
