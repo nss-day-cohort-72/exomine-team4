@@ -1,16 +1,17 @@
 // Imports each module
-import { Facilities } from "./Facilities.js";
-import { GovernorSelector } from "./Governor.js";
-import { Minerals } from "./Minerals.js";
+import { Facilities } from "./Facilities.js"
+import { GovernorSelector } from "./Governor.js"
+import { Minerals } from "./Minerals.js"
+import { SavePurchase } from "./PurchaseButton.js"
 
 // Main container for rendering the HTML
-const mainContainer = document.querySelector("#container");
+const mainContainer = document.querySelector("#container")
 
 // Function to render the main HTML structure
 const renderAllHTML = async () => {
-    const facilityOptions = await Facilities();
-    const governorOptions = await GovernorSelector();
-
+    const facilityOptions = await Facilities()
+    const governorOptions = await GovernorSelector()
+    const saveButton = SavePurchase()
     const composeHTML = `
     <header class="mb-5 ms-5">
         <h1>Solar System Mining Marketplace</h1>
@@ -44,9 +45,9 @@ const renderAllHTML = async () => {
                 <!-- Minerals will be dynamically injected here --></div>
         </section>
         <section class="col-3 spaceCart card me-5">
-            <h3 class="mx-auto">Space Cart</h3>
+            <h3 class="mx-auto mt-3">Space Cart</h3>
             <!-- Selected TransientState goes here -->
-            <!-- Purchase Mineral Button goes here -->
+            ${saveButton}
         </section>
     </div>
     `;
