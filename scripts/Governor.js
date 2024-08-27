@@ -1,4 +1,5 @@
 import { setGovernorChoice } from "./TransientState.js"
+import { ColonyInventory} from "./Colonies.js"
 
 export const GovernorSelector = async () => {
   const governors = await getGovernors();
@@ -13,10 +14,14 @@ export const GovernorSelector = async () => {
           .join("")}
     </select>`
 
-  document.addEventListener("change", (event) => {
+  document.addEventListener("change", async (event) => {
     if (event.target.id === "governorSelector") {
       setGovernorChoice(parseInt(event.target.value));
     }
+
+          // Call ColonyInventory to fetch and display colonies and their minerals
+          const colonyHTML = await ColonyInventory();
+          document.querySelector("#colonyOutput").innerHTML = colonyHTML;
   })
 
   return optionsHTML;

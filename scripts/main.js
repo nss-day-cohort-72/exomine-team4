@@ -1,6 +1,7 @@
 // Imports each module
 import { Facilities } from "./Facilities.js"
 import { GovernorSelector } from "./Governor.js"
+import { ColonyInventory} from "./Colonies.js"
 
 
 // Renders entire HTML and adds it to #container
@@ -9,6 +10,8 @@ const mainContainer = document.querySelector("#container")
 const renderAllHTML = async () => {
     const facilityOptions = await Facilities()
     const governorOptions = await GovernorSelector()
+    const colonyInventory = await ColonyInventory();  // Get the HTML for the colony inventory
+
 
     const composeHTML = `
     <header class="mb-5 ms-5">
@@ -30,9 +33,9 @@ const renderAllHTML = async () => {
                 </div>
             </section>
         </div>
-        <div class="col-6">
-            <section class="d-flex justify-content-center">
-                <!-- Colonies output goes here -->
+              <div class="col-6">
+            <section class="d-flex justify-content-center" id="colonyOutput">
+                <!-- Colonies output will be inserted here after governor selection -->
             </section>
         </div>
     </div>

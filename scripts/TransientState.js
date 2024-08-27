@@ -1,6 +1,5 @@
 const state = {
   selectedFacility: 0,
-  selectedColony: 0,
   selectedGovernor: 0,
   selectedMineral: 0,
 }
@@ -10,10 +9,6 @@ export const setFacilityChoice = (facilityId) => {
   console.log(state);
 }
 
-export const setColonyChoice = (colonyId) => {
-    state.selectedColony = colonyId;
-    console.log(state);
-}
 
 export const setGovernorChoice = (governorId) => {
   state.selectedGovernor = governorId;
