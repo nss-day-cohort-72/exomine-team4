@@ -7,7 +7,7 @@ export const Facilities = async () => {
     const facilities = await response.json()
 
     // Start creating the dropdown HTML
-    let optionsHTML = `<select id="facilitySelect"><option value="">Choose a facility</option>`
+    let optionsHTML = `<select id="facilitySelect"><option value="">Choose a facility...</option>`
 
     // Iterate through the facilities object and create an option for each facility
     // To only include facilities where status is true (active)

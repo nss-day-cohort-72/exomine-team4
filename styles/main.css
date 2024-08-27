@@ -15,3 +15,14 @@
 select {
     width: 300px!important;
 }
+
+p {
+    padding: 0!important;
+    margin: 0!important;
+}
+
+button {
+    border-color: black!important;
+    color: black!important;
+    background-color: #efefef!important;
+}
