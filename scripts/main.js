@@ -56,7 +56,6 @@ const renderAllHTML = async () => {
 
 // Function to re-render the minerals section only
 const renderMineralsSection = async () => {
-    console.log("renderMineralsSection is running")
     const mineralOptions = await Minerals(); // Fetch and render minerals based on selected facility
     const mineralsSection = document.querySelector("#mineralsSection");
     mineralsSection.innerHTML = `

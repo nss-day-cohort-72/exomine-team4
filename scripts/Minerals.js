@@ -1,35 +1,38 @@
-import { getState } from "./TransientState.js";
+import { getState } from "./TransientState.js"
 
 export const Minerals = async () => {
-  const { selectedFacility, selectedFacilityName } = getState()
+  const { selectedFacility, selectedFacilityName } = getState();
 
-  console.log("Selected Facility ID:", selectedFacility); // Debugging
-  console.log("Selected Facility Name:", selectedFacilityName); // Debugging
+  const facilityMineralsResponse = await fetch("http://localhost:8088/facilityMinerals");
+  const mineralsResponse = await fetch("http://localhost:8088/minerals");
 
-  const response = await fetch("http://localhost:8088/facilityMinerals")
-  const facilityMinerals = await response.json();
+  const facilityMinerals = await facilityMineralsResponse.json();
+  const minerals = await mineralsResponse.json();
 
-  console.log("Facility Minerals Data:", facilityMinerals); // Debugging
+  const mineralMap = {};
 
+  minerals.forEach(mineral => {
+    mineralMap[mineral.id] = mineral.name;
+  })
   const mineralsForFacility = facilityMinerals.filter(
-    (mineral) => mineral.facilityId === Number(selectedFacility)
+    mineral => mineral.facilityId === selectedFacility
   );
 
-  console.log("Filtered Minerals for Selected Facility:", mineralsForFacility); // Debugging
+  const mineralOptions = mineralsForFacility.map(mineral => {
+    const mineralName = mineralMap[mineral.mineralId];
+    return `
+      <div class="mx-auto text-center">
+          <input type="radio" id="mineral${mineral.mineralId}" name="mineralSelect" value="${mineral.mineralId}" />
+          <label for="mineral${mineral.mineralId}">${mineral.quantity} tons of ${mineralName}</label>
+      </div>
+    `;
+  }).join("");
 
-  const mineralOptions = mineralsForFacility
-    .map((mineral) => {
-      return `
-        <div class="mx-auto text-center">
-            <input type="radio" id="mineral${mineral.mineralId}" name="mineralSelect" value="${mineral.mineralId}" />
-            <label for="mineral${mineral.mineralId}">${mineral.quantity} tons of Mineral ID ${mineral.mineralId}</label>
-        </div>
-        `
-    })
-    .join("");
+ 
+  const headerText = selectedFacilityName ? `Facility Minerals for ${selectedFacilityName}` : "Facility Minerals";
 
   return `
-    <h3 class="mx-auto mt-3">Facility Minerals for ${selectedFacilityName}</h3>
-    <ul class="mx-auto">${mineralOptions}</ul>
-  `
+    <h3 class="mx-auto mt-3">${headerText}</h3>
+    ${mineralOptions}
+  `;
 }
