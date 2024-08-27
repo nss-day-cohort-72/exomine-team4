@@ -1,8 +1,8 @@
+import { setColonyChoice } from "./TransientState.js"
 
+export const ColonyInventory = async () => {
 
-export const ColonyInventory = () => {
-
-    const colonies = getColonies();
+    const colonies = await getColonies();
 
 }
 
@@ -10,7 +10,7 @@ export const ColonyInventory = () => {
 export const getColonies = async () => {
     const response = await fetch("/localhost:8088/colonies")  // Adjust the path to your database.json file
     const data = await response.json();
-    return data.colonies;
+    return data;
 };
 
 export const getColonyMinerals = async (colonyId) => {
@@ -23,3 +23,9 @@ const filteredMinerals = data.filter(mineral => mineral.colonyId === colonyId);
 return filteredMinerals;
 
 }
+
+document.addEventListener("change", (event) => {
+    if(event.target.id === "colonySelector") {
+        setColonyChoice(parseInt(event.target.value));
+    }
+})
