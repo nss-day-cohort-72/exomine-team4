@@ -19,6 +19,10 @@ export const setMineralChoice = (mineralId) => {
   console.log(state);
 }
 
+export const getState = () => {
+    return { ...state };
+  }
+
 export const purchaseMineral = async () => {
   const postOptions = {
     method: "PUT",
