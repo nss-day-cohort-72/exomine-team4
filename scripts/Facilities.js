@@ -1,3 +1,4 @@
+import { setFacilityChoice } from "./TransientState.js";
 
 export const Facilities = async () => {
     //Fetches the mining facilities data from the JSON server
