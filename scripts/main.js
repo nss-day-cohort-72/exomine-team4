@@ -1,30 +1,30 @@
 // Imports each module
-import { GovernorSelector } from './Governor.js';
+import { Facilities } from "./Facilities.js";
 
 
 // Renders entire HTML and adds it to #container
 const mainContainer = document.querySelector("#container");
 
-const renderAllHTML = async () => {
-    
-const governorOptions = await GovernorSelector();
+const renderAllHTML = async() => {
+    const facilityOptions = await Facilities();
+
     const composeHTML = `
     <header class="mb-5 ms-5">
         <h1>Solar System Mining Marketplace</h1>
     </header>
 
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-6">
             <section class="w-100 governorsList">
                 <div class="d-flex justify-content-start ms-5 ps-3">
-                    <p>Choose a governor</p>
-                    ${governorOptions}
+                    <p class="me-5">Choose a governor</p>
+                    <!-- Governor Input goes here -->
                 </div>
             </section>
             <section class="w-100 facilitiesList">
                 <div class="d-flex justify-content-start ms-5 ps-3">
-                    <p>Choose a facility</p>
-                    <!-- Facility Input goes here -->
+                    <p class="me-5">Choose a facility</p>
+                    ${facilityOptions}
                 </div>
             </section>
         </div>
