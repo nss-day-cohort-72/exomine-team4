@@ -2,9 +2,6 @@ import { setGovernorChoice } from "./TransientState.js"
 
 export const GovernorSelector = async () => {
   const governors = await getGovernors();
-
-  console.log("Fetched Governors", governors)
-
   const optionsHTML = `
     <select id="governorSelector">
         <option value="0">Choose a governor...</option>
@@ -28,13 +25,8 @@ export const getGovernors = async () => {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`)
     }
-    const data = await response.json();
-    console.log(
-      "ok what ist he data we get back in getGovernors before data.governors",
-      data
-    )
-
-    console.log("Fetched Governors:", data); // Log the fetched data
+    const data = await response.json()
+    
     return data;
   } catch (error) {
     console.error("Failed to fetch governors:", error)
