@@ -1,26 +1,37 @@
 const state = {
-
+  selectedFacility: 0,
+  selectedGovernor: 0,
+  selectedMineral: 0,
 }
 
-export const setFacility = (facilityId) => {
-    state.selectedFacility = facilityId
-    document.dispatchEvent(new CustomEvent("stateChanged"))
+export const setFacilityChoice = (facilityId) => {
+  state.selectedFacility = facilityId;
+  console.log(state);
 }
 
-export const purchaseMineral = () => {
-    /*
-        Does the chosen governor's colony already own some of this mineral?
-            - If yes, what should happen?
-            - If no, what should happen?
+export const setGovernorChoice = (governorId) => {
+  state.selectedGovernor = governorId;
+  console.log(state);
+}
 
-        Defining the algorithm for this method is traditionally the hardest
-        task for teams during this group project. It will determine when you
-        should use the method of POST, and when you should use PUT.
+export const setMineralChoice = (mineralId) => {
+  state.selectedMineral = mineralId;
+  console.log(state);
+}
 
-        Only the foolhardy try to solve this problem with code.
-    */
+export const purchaseMineral = async () => {
+  const postOptions = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(state),
+  }
 
+  //sends the data to the server at /purchases
+  const response = await fetch("http://localhost:8088/facilityMinerals", postOptions)
+  await response.json()
 
-
-    document.dispatchEvent(new CustomEvent("stateChanged"))
+  const customEvent = new CustomEvent("newPurchaseCreated")
+  document.dispatchEvent(customEvent)
 }
