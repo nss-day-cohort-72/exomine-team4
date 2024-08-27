@@ -1,13 +1,13 @@
 // Imports each module
-
+import { GovernorSelector } from './Governor.js';
 
 
 // Renders entire HTML and adds it to #container
 const mainContainer = document.querySelector("#container");
 
-const renderAllHTML = () => {
+const renderAllHTML = async () => {
     
-
+const governorOptions = await GovernorSelector();
     const composeHTML = `
     <header class="mb-5 ms-5">
         <h1>Solar System Mining Marketplace</h1>
@@ -18,7 +18,7 @@ const renderAllHTML = () => {
             <section class="w-100 governorsList">
                 <div class="d-flex justify-content-start ms-5 ps-3">
                     <p>Choose a governor</p>
-                    <!-- Governor Input goes here -->
+                    ${governorOptions}
                 </div>
             </section>
             <section class="w-100 facilitiesList">
