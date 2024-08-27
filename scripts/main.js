@@ -18,15 +18,15 @@ const renderAllHTML = async () => {
 
     <div class="row mb-5">
         <div class="col-6">
-            <section class="w-100 governorsList">
+            <section class="w-100 governorsList mb-2">
                 <div class="d-flex justify-content-start ms-5 ps-3">
-                    <p class="me-5">Choose a governor</p>
+                    <p class="me-5 w-25 my-auto">Choose a governor</p>
                     ${governorOptions}
                 </div>
             </section>
             <section class="w-100 facilitiesList">
                 <div class="d-flex justify-content-start ms-5 ps-3">
-                    <p class="me-5">Choose a facility</p>
+                    <p class="me-5 w-25 my-auto">Choose a facility</p>
                     ${facilityOptions}
                 </div>
             </section>

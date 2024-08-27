@@ -11,3 +11,7 @@
     height: 200px;
     border: 2px dotted teal!important;
 }
+
+select {
+    width: 300px!important;
+}
