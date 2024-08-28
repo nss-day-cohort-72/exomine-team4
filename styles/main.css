@@ -26,3 +26,12 @@ button {
     color: black!important;
     background-color: #efefef!important;
 }
+
+ul {
+    margin-top: 15px;
+}
+
+li {
+    font-size: 1.1rem;
+    font-weight: normal;
+}
