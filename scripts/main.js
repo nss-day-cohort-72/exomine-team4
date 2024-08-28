@@ -3,6 +3,7 @@ import { Facilities } from "./Facilities.js"
 import { GovernorSelector } from "./Governor.js"
 import { Minerals } from "./Minerals.js"
 import { SavePurchase } from "./PurchaseButton.js"
+import { ColonyInventory} from "./Colonies.js"
 
 // Main container for rendering the HTML
 const mainContainer = document.querySelector("#container")
@@ -12,6 +13,8 @@ const renderAllHTML = async () => {
     const facilityOptions = await Facilities()
     const governorOptions = await GovernorSelector()
     const saveButton = SavePurchase()
+    const colonyInventory = await ColonyInventory()
+
     const composeHTML = `
     <header class="mb-5 ms-5">
         <h1>Solar System Mining Marketplace</h1>
@@ -33,8 +36,8 @@ const renderAllHTML = async () => {
             </section>
         </div>
         <div class="col-6">
-            <section class="d-flex justify-content-center">
-                <!-- Colonies output goes here -->
+            <section class="d-flex justify-content-center" id="colonyOutput">
+                <!-- Colonies output will be inserted here after governor selection -->
             </section>
         </div>
     </div>
@@ -50,10 +53,10 @@ const renderAllHTML = async () => {
             ${saveButton}
         </section>
     </div>
-    `;
+    `
 
-    mainContainer.innerHTML = composeHTML;
-};
+    mainContainer.innerHTML = composeHTML
+}
 
 // Function to re-render the minerals section only
 const renderMineralsSection = async () => {
