@@ -1,19 +1,19 @@
 // Imports each module
-import { Facilities } from "./Facilities.js"
-import { GovernorSelector } from "./Governor.js"
-import { Minerals } from "./Minerals.js"
-import { SavePurchase } from "./PurchaseButton.js"
-import { ColonyInventory} from "./Colonies.js"
+import { Facilities } from "./Facilities.js";
+import { GovernorSelector } from "./Governor.js";
+import { Minerals } from "./Minerals.js";
+import { SavePurchase } from "./PurchaseButton.js";
+import { ColonyInventory } from "./Colonies.js";
+import { SpaceCart } from "./SpaceCart.js";
 
 // Main container for rendering the HTML
-const mainContainer = document.querySelector("#container")
+const mainContainer = document.querySelector("#container");
 
 // Function to render the main HTML structure
 const renderAllHTML = async () => {
-    const facilityOptions = await Facilities()
-    const governorOptions = await GovernorSelector()
-    const saveButton = SavePurchase()
-    const colonyInventory = await ColonyInventory()
+    const facilityOptions = await Facilities();
+    const governorOptions = await GovernorSelector();
+    const colonyInventory = await ColonyInventory();
 
     const composeHTML = `
     <header class="mb-5 ms-5">
@@ -49,13 +49,18 @@ const renderAllHTML = async () => {
         </section>
         <section class="col-3 spaceCart card me-5">
             <h3 class="mx-auto mt-3">Space Cart</h3>
-            <!-- Selected TransientState goes here -->
-            ${saveButton}
+            <div id="spaceCartContent">
+                <!-- Space Cart content will be dynamically injected here -->
+            </div>
+            ${SavePurchase()}
         </section>
     </div>
-    `
+    `;
 
-    mainContainer.innerHTML = composeHTML
+    mainContainer.innerHTML = composeHTML;
+
+    // Initial render of dynamic sections
+    renderSpaceCart();
 }
 
 // Function to re-render the minerals section only
@@ -65,12 +70,17 @@ const renderMineralsSection = async () => {
     mineralsSection.innerHTML = `
         <div class="minerals mx-auto">
         ${mineralOptions}
-    `
+    `;
 }
 
+const renderSpaceCart = async () => {
+    const spaceCart = await SpaceCart();
+    document.querySelector("#spaceCartContent").innerHTML = spaceCart;
+};
 
-// Listen for the custom event "stateChanged" to re-render the minerals section
-document.addEventListener("stateChanged", renderMineralsSection);
+document.addEventListener("stateChanged", () => {
+    renderMineralsSection();
+    renderSpaceCart();
+});
 
-// Initial render of the main HTML structure
 renderAllHTML();
