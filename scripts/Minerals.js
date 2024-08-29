@@ -1,45 +1,48 @@
 import { getState, setMineralChoice } from "./TransientState.js";
 
+// Fetches minerals for the selected facility and displays them as radio buttons
 export const Minerals = async () => {
-  const { selectedFacility, selectedFacilityName } = getState();
+    // Get the selected facility from the transient state
+    const { selectedFacility, selectedFacilityName } = getState();
 
-  const facilityMineralsResponse = await fetch("http://localhost:8088/facilityMinerals");
-  const mineralsResponse = await fetch("http://localhost:8088/minerals");
+    // Fetch facility minerals and minerals data from the JSON server
+    const [facilityMineralsResponse, mineralsResponse] = await Promise.all([
+        fetch("http://localhost:8088/facilityMinerals"),
+        fetch("http://localhost:8088/minerals")
+    ]);
+    const facilityMinerals = await facilityMineralsResponse.json();
+    const minerals = await mineralsResponse.json();
 
-  const facilityMinerals = await facilityMineralsResponse.json();
-  const minerals = await mineralsResponse.json();
+    // Filter minerals by the selected facility and map mineral names by ID
+    const mineralsForFacility = facilityMinerals.filter(mineral => mineral.facilityId === selectedFacility);
+    const mineralMap = minerals.reduce((map, mineral) => {
+        map[mineral.id] = mineral.name;
+        return map;
+    }, {});
 
-  const mineralMap = {};
+    // Create radio button options for each mineral
+    const mineralOptions = mineralsForFacility.map(mineral => {
+        return `
+            <div class="mx-auto text-center">
+                <input type="radio" id="mineral${mineral.mineralId}" name="mineralSelect" value="${mineral.mineralId}" />
+                <label for="mineral${mineral.mineralId}">${mineral.quantity} tons of ${mineralMap[mineral.mineralId]}</label>
+            </div>
+        `;
+    }).join("");
 
-  minerals.forEach(mineral => {
-    mineralMap[mineral.id] = mineral.name;
-  });
+    // Header text based on the selected facility's name
+    const headerText = selectedFacilityName ? `Facility Minerals for ${selectedFacilityName}` : "Facility Minerals";
 
-  const mineralsForFacility = facilityMinerals.filter(
-    mineral => mineral.facilityId === selectedFacility
-  );
+    // Updates the transient state when a mineral is selected
+    document.addEventListener("change", (event) => {
+        if (event.target.name === "mineralSelect") {
+            setMineralChoice(parseInt(event.target.value));
+        }
+    });
 
-  const mineralOptions = mineralsForFacility.map(mineral => {
-    const mineralName = mineralMap[mineral.mineralId];
+    // Returns the header and mineral options to be rendered
     return `
-      <div class="mx-auto text-center">
-          <input type="radio" id="mineral${mineral.mineralId}" name="mineralSelect" value="${mineral.mineralId}" />
-          <label for="mineral${mineral.mineralId}">${mineral.quantity} tons of ${mineralName}</label>
-      </div>
+        <h3 class="mx-auto mt-3">${headerText}</h3>
+        ${mineralOptions}
     `;
-  }).join("");
-
-  const headerText = selectedFacilityName ? `Facility Minerals for ${selectedFacilityName}` : "Facility Minerals";
-
-  document.addEventListener("change", (event) => {
-    if (event.target.name === "mineralSelect") {
-        const selectedMineralId = parseInt(event.target.value);
-        setMineralChoice(selectedMineralId);
-    }
-});
-
-  return `
-    <h3 class="mx-auto mt-3">${headerText}</h3>
-    ${mineralOptions}
-  `;
 };

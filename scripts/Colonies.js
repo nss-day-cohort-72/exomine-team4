@@ -113,9 +113,3 @@ export const getColonyMinerals = async (colonyId) => {
 
   return filteredMaterials;
 };
-
-// document.addEventListener("change", (event) => {
-//     if(event.target.id === "colonySelector") {
-//         setColonyChoice(parseInt(event.target.value));
-//     }
-// })
